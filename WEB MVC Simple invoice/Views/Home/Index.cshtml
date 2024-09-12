@@ -1,0 +1,206 @@
+﻿
+@model WEB_MVC_Simple_invoice.Models.Index
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="container">
+    <div class="header01">
+        <h2 class="invoiceheader" style="text-align:center;"> New Invoice Creation </h2>
+    </div>
+    <br /> <br />
+    <div class="invoicecontent">
+
+        <div class="row maindivision">
+
+            <div class="col-lg-6  leftside">
+
+                <div class="row line1">
+                    <div class="col-lg-3">
+
+                        @Html.LabelFor(model => model.CustomerCode, "Customer Code")
+                    </div>
+                    <div class="col-lg-3">
+
+                        @Html.TextBoxFor(model => model.CustomerCode, new { id = "customerCode", required = "required", type = "number", min = "0" })
+                    </div>
+                </div>
+                <br />
+                <div class="row line2">
+                    <div class="col-lg-3">
+
+                        @Html.LabelFor(model => model.CustomerName, "Customer Name")
+                    </div>
+                    <div class="col-lg-3">
+
+                        @Html.TextBoxFor(model => model.CustomerName, new { id = "customerName" })
+                    </div>
+                </div>
+                <br />
+                <div class="row line3">
+                    <div class="col-lg-3">
+
+                        @Html.LabelFor(model => model.CustomerAddress, "Cust Address")
+                    </div>
+                    <div class="col-lg-3">
+
+                        @Html.TextBoxFor(model => model.CustomerAddress, new { id = "customerAddress" })
+                    </div>
+                </div>
+                <br />
+                <div class="row line4">
+                    <div class="col-lg-3">
+
+                        @Html.LabelFor(model => model.InvoiceNumber, "Invoice Number")
+                    </div>
+                    <div class="col-lg-3">
+
+                        @Html.TextBoxFor(model => model.InvoiceNumber, new { id = "invoicenumber", @readonly = "readonly" })
+                    </div>
+                </div>
+                <br />
+                <div class="row line5">
+                    <div class="col-lg-3">
+
+                        @Html.LabelFor(model => model.NoOfItems, "No of Items")
+                    </div>
+                    <div class="col-lg-3">
+
+                        @Html.TextBoxFor(model => model.NoOfItems, new { id = "noofitems" })
+                    </div>
+                </div>
+                <br />
+                <div class="row line6">
+                    <div class="col-lg-3">
+
+                        @Html.LabelFor(model => model.ReportDetails, "Report Details")
+                    </div>
+                    <div class="col-lg-3">
+
+                        @Html.TextBoxFor(model => model.ReportDetails, new { id = "reportdetails" })
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6  rightside">
+
+
+                <div class="row line2">
+                    <div class="col-lg-3">
+
+                        @Html.LabelFor(model => model.ItemName, "Item Name")
+                    </div>
+                    <div class="col-lg-3">
+
+
+                        @Html.DropDownListFor(model => model.SelectedItemName, Model.ItemNames, "Select an Item", new { id = "itemName", @class = "form-control" })
+
+                    </div>
+                </div>
+                <br />
+                <div class="row line1">
+                    <div class="col-lg-3">
+
+                        @Html.LabelFor(model => model.ItemCode, "Item  Code")
+                    </div>
+                    <div class="col-lg-3">
+
+                        @Html.TextBoxFor(model => model.ItemCode, new { id = "itemcode" })
+                    </div>
+                </div>
+                <br />
+                <div class="row line3">
+                    <div class="col-lg-3">
+
+                        @Html.LabelFor(model => model.ItemPrice, "Item Price")
+                    </div>
+                    <div class="col-lg-3">
+
+                        @Html.TextBoxFor(model => model.ItemPrice, new { id = "itemprice" })
+                    </div>
+                </div>
+                <br />
+                <div class="row line4">
+                    <div class="col-lg-3">
+
+                        @Html.LabelFor(model => model.Quantity, "Quantity")
+                    </div>
+                    <div class="col-lg-3">
+
+                        @Html.TextBoxFor(model => model.Quantity, new { id = "quantity" })
+                    </div>
+                </div>
+                <br />
+                <div class="row line5">
+                    <div class="col-lg-3">
+
+                        @Html.LabelFor(model => model.Amount, "Amount")
+                    </div>
+                    <div class="col-lg-3">
+
+                        @Html.TextBoxFor(model => model.Amount, new { id = "amount" })
+                    </div>
+                </div>
+                <br />
+                <div class="row line6">
+                    <div class="col-lg-3">
+
+                        @Html.LabelFor(model => model.InvoiceAmount, "Invoice Amount ")
+                    </div>
+                    <div class="col-lg-3">
+
+                        @Html.TextBoxFor(model => model.InvoiceAmount, new { id = "invoiveamount" })
+                    </div>
+                </div>
+
+                <br />  <br />
+                <div class="row line7">
+                    <div class="col-lg-3">
+
+
+                    </div>
+                    <div class="col-lg-3">
+
+                        <button type="button" class="btn btn-primary" id="btnsubmit">Submit</button>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#btnsubmit').click(function (e) {
+            var CustomerCode = $('#customerCode').val();
+
+            if (CustomerCode === '') {
+                alert("Customer Code is Required");
+                e.preventDefault();
+            }
+            else if (!$.isNumeric(CustomerCode) || CustomerCode <= 0) {
+                alert("Please Enter a Valid Customer Code")
+
+                e.preventDefault();
+            }
+            else { $('form').submit(); }
+
+
+
+        }
+
+
+        )
+    })
+
+</script>
